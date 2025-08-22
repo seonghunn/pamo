@@ -3,7 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="description"
-        content="Deformable Neural Radiance Fields creates free-viewpoint portraits (nerfies) from casually captured videos.">
+        content="Parallel Mesh Optimization for Intersection-Free
+        Low-Poly Modeling on the GPU">
   <meta name="keywords" content="mesh optimization, mesh simplification, manifoldness, intersection-free mesh, geometry processing, remeshing">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>PaMO: Parallel Mesh Optimization for Intersection-Free Low-Poly Modeling on the GPU</title>
@@ -125,17 +126,6 @@
       </div>
     </div>
     <!--/ Abstract. -->
-
-    <!-- Paper video.
-    <div class="columns is-centered has-text-centered">
-      <div class="column is-four-fifths">
-        <h2 class="title is-3">Video</h2>
-        <div class="publication-video">
-          <iframe src="https://www.youtube.com/embed/r12O0z0723s"
-                  frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-        </div>
-      </div>
-    </div> -->
 </section>
 
 <section class="section">
@@ -161,7 +151,7 @@
           <img src="./static/images/baseline_inter.png"
                  class="pipeline-image"
                  alt="pipeline image."/>
-                 <p><center>
+                 <p><center class="caption-text">
                   Our method guarantees intersection-free output meshes, whereas baseline models cannot avoid producing self-intersecting triangles (marked in red).
                 </center></p>
                 </p>
@@ -170,7 +160,7 @@
           <img src="./static/images/rolopm.png"
                  class="pipeline-image"
                  alt="pipeline image."/>
-                 <p><center>The original shape is preserved better in our output mesh, with fewer spike
+                 <p><center class="caption-text">The original shape is preserved better in our output mesh, with fewer spike
                   artifacts.</center></p>
         </div>
       </div>
@@ -186,7 +176,7 @@
         <img src="./static/images/lod_new.png"
                class="pipeline-image"
                alt="pipeline image."/>
-              <p><center>Due to our parallelization and iterative simplification approach, we can achieve high-quality output meshes with level of detail in a reasonable time.</center></p>
+              <p><center class="caption-text">Due to our parallelization and iterative simplification approach, we can achieve high-quality output meshes with level of detail in a reasonable time.</center></p>
       </div>
     </div>
   </div>
