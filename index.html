@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="description"
+        content="Deformable Neural Radiance Fields creates free-viewpoint portraits (nerfies) from casually captured videos.">
+  <meta name="keywords" content="mesh optimization, mesh simplification, manifoldness, intersection-free mesh, geometry processing, remeshing">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>PaMO: Parallel Mesh Optimization for Intersection-Free Low-Poly Modeling on the GPU</title>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+        rel="stylesheet">
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+  <link rel="icon" href="./static/images/favicon.svg">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+</head>
+<body>
+
+
+
+
+<section class="hero">
+  <div class="hero-body">
+    <div class="container ">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-1 publication-title">PaMO: Parallel Mesh Optimization for Intersection-Free 
+            <br>Low-Poly Modeling on the GPU</h1>
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">
+              <a>Seonghun Oh</a><sup>1*</sup>,</span>
+            <span class="author-block">
+              <a href="https://rabbit-hu.github.io/">Xiaodi Yuan</a><sup>2*</sup>,</span>
+            <span class="author-block">
+              <a href="https://sarahweiii.github.io/">Xinyue Wei</a><sup>2*</sup>,</span>
+            <span class="author-block">
+              <a href="https://rshi.top/">Ruoxi Shi</a><sup>2</sup>,</span>
+            <span class="author-block">
+              <a href="https://www.fbxiang.com/">Fanbo Xiang</a><sup>3</sup>,</span>
+            <span class="author-block">
+              <a href="https://cseweb.ucsd.edu/~mil070/">Minghua Liu</a><sup>3</sup>,</span>
+            <span class="author-block">
+              <a href="https://cseweb.ucsd.edu/~haosu/">Hao Su</a><sup>2,3</sup></span>
+          </div>
+
+          <div class="is-size-5 publication-authors">
+            <span class="author-block"><sup>1</sup> Yonsei University,</span>
+            <span class="author-block"><sup>2</sup> University of California San Diego,</span>
+            <span class="author-block"><sup>3</sup> Hillbot Inc.</span>
+          </div>
+          <div class="is-size-6 publication-authors">
+            <span class="author-block"><sup>*</sup> Equal contribution</span>
+          </div>
+
+          <div class="column has-text-centered">
+            <div class="publication-links">
+              <!-- PDF Link. -->
+              <span class="link-block">
+                <a href="TBD"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="ai ai-arxiv"></i>
+                  </span>
+                  <span>TBD</span>
+                </a>
+              </span>
+              <!-- Code Link. -->
+              <span class="link-block">
+                <a href="https://github.com/SarahWeiii/pamo"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-github"></i>
+                  </span>
+                  <span>Code</span>
+                  </a>
+              </span>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="hero teaser">
+  <div class="container ">
+    <div class="hero-body">
+      <img src="./static/images/teaser.png"
+                 class="teaser-image"
+                 alt="teaser image."/>
+
+      <h2 class="subtitle has-text-centered">
+        We propose a GPU-based parallel mesh optimization that converts arbitrary meshes into low-poly, intersection-free, manifold meshes. <br>Our algorithm efficiently processes large-scale meshes, reducing 2M-face models to 2K-face in 2.29s and 7M-face models to 7K-face in 5.32s.
+      </h2>
+    </div>
+  </div>
+</section>
+
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <!-- Abstract. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified">
+          <p>
+            Reducing the triangle count in complex 3D models is a basic geometry preprocessing step in graphics pipelines such as efficient rendering and interactive editing. However, most existing mesh simplification methods exhibit a few issues. Firstly, they often lead to self-intersections during decimation, a major issue for applications such as 3D printing and soft-body simulation. Second, to perform simplification on a mesh in the wild, one would first need to perform re-meshing, which often suffers from surface shifts and losses of sharp features. Finally, existing re-meshing and simplification methods can take minutes when processing large-scale meshes, limiting their applications in practice. To address the challenges, we introduce a novel GPU-based mesh optimization approach containing three key components: (1) a parallel re-meshing algorithm to turn meshes in the wild into watertight, manifold, and intersection-free ones, and reduce the prevalence of poorly shaped triangles; (2) a robust parallel simplification algorithm with intersection-free guarantees; (3) an optimization-based safe projection algorithm to realign the simplified mesh with the input, eliminating the surface shift introduced by re-meshing and recovering the original sharp features. The algorithm demonstrates remarkable efficiency, simplifying a 2-million-face mesh to 20k triangles in 3 seconds on RTX4090. We evaluated the approach on the Thingi10K dataset and showcased its exceptional performance in geometry preservation and speed.
+          </p>
+        </div>
+      </div>
+    </div>
+    <!--/ Abstract. -->
+
+    <!-- Paper video.
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Video</h2>
+        <div class="publication-video">
+          <iframe src="https://www.youtube.com/embed/r12O0z0723s"
+                  frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+        </div>
+      </div>
+    </div> -->
+</section>
+
+<section class="section">
+  <div class="columns is-centered">
+    <div class="column is-four-fifths">
+      <h2 class="title is-3">Pipeline overview</h2>
+
+      <div class="content has-text-justified">
+        <img src="./static/images/pipeline.png"
+               class="pipeline-image"
+               alt="pipeline image."/>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+    <div class="columns is-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Comparison with Existing Works</h2>
+
+        <div class="content has-text-justified">
+          <img src="./static/images/baseline_inter.png"
+                 class="pipeline-image"
+                 alt="pipeline image."/>
+                 <p><center>
+                  Our method guarantees intersection-free output meshes, whereas baseline models cannot avoid producing self-intersecting triangles (marked in red).
+                </center></p>
+                </p>
+        </div>
+        <div class="content has-text-justified">
+          <img src="./static/images/rolopm.png"
+                 class="pipeline-image"
+                 alt="pipeline image."/>
+                 <p><center>The original shape is preserved better in our output mesh, with fewer spike
+                  artifacts.</center></p>
+        </div>
+      </div>
+    </div>
+</section>
+
+<section class="section">
+  <div class="columns is-centered">
+    <div class="column is-four-fifths">
+      <h2 class="title is-3">Level of Detail</h2>
+
+      <div class="content has-text-justified">
+        <img src="./static/images/lod_new.png"
+               class="pipeline-image"
+               alt="pipeline image."/>
+              <p><center>Due to our parallelization and iterative simplification approach, we can achieve high-quality output meshes with level of detail in a reasonable time.</center></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="section" id="BibTeX">
+  <div class="container is-max-desktop content">
+    <h2 class="title">BibTeX</h2>
+    <pre><code> TBD</code></pre>
+  </div>
+</section>
+
+
+<footer class="footer">
+  <div class="container">
+    <div class="content has-text-centered">
+      <a class="icon-link"
+         href="Coming soon">
+        <i class="fas fa-file-pdf"></i>
+      </a>
+      <a class="icon-link" href="https://github.com/SarahWeiii/pamo" class="external-link" disabled>
+        <i class="fab fa-github"></i>
+      </a>
+    </div>
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content">
+          <p>
+            This website is borrowed from <a
+              href="https://github.com/nerfies/nerfies.github.io">nerfies</a>.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
