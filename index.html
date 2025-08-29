@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="description"
+        content="Parallel Mesh Optimization for Intersection-Free
+        Low-Poly Modeling on the GPU">
+  <meta name="keywords" content="PaMO, Parallel Mesh Optimization, low-poly modeling, GPU, mesh optimization, mesh simplification, manifoldness, intersection-free mesh, geometry processing, remeshing">
+  <meta name="robots" content="index, follow">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="google-site-verification" content="kYOluMQx35QC0O9pybkxOh_pRqerioqsuLNi4VuakLE" />
+  <title>PaMO: Parallel Mesh Optimization for Intersection-Free Low-Poly Modeling on the GPU</title>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+        rel="stylesheet">
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+  <link rel="icon" href="static/images/icon.png">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="PaMO: Parallel Mesh Optimization for Intersection-Free Low-Poly Modeling on the GPU">
+  <meta property="og:description" content="Parallel Mesh Optimization (PaMO) — GPU-based pipeline for low-poly, intersection-free, manifold meshes with high quality.">
+  <meta property="og:image" content="static/images/teaser.png">
+  <meta property="og:site_name" content="PaMO">
+  <!-- Set your canonical URL below when deployed -->
+  <!-- <link rel="canonical" href="https://YOUR_DOMAIN/PAGE_PATH"> -->
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="PaMO: Parallel Mesh Optimization for Intersection-Free Low-Poly Modeling on the GPU">
+  <meta name="twitter:description" content="GPU-based parallel mesh optimization for intersection-free, manifold, low-poly meshes.">
+  <meta name="twitter:image" content="static/images/teaser.png">
+
+  <!-- JSON-LD Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "TechArticle",
+    "headline": "PaMO: Parallel Mesh Optimization for Intersection-Free Low-Poly Modeling on the GPU",
+    "name": "PaMO: Parallel Mesh Optimization",
+    "description": "GPU-based parallel mesh optimization that produces low-poly, intersection-free, manifold meshes.",
+    "author": [
+      {"@type": "Person", "name": "Seonghun Oh"},
+      {"@type": "Person", "name": "Xiaodi Yuan"},
+      {"@type": "Person", "name": "Xinyue Wei"},
+      {"@type": "Person", "name": "Ruoxi Shi"},
+      {"@type": "Person", "name": "Fanbo Xiang"},
+      {"@type": "Person", "name": "Minghua Liu"},
+      {"@type": "Person", "name": "Hao Su"}
+    ],
+    "image": "static/images/teaser.png",
+    "inLanguage": "en",
+    "keywords": ["PaMO", "Parallel Mesh Optimization", "GPU", "low-poly", "intersection-free", "manifold", "mesh simplification"]
+  }
+  </script>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+</head>
+<body>
+
+
+
+
+<section class="hero">
+  <div class="hero-body">
+    <div class="container ">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-1 publication-title">PaMO: Parallel Mesh Optimization for Intersection-Free 
+            <br>Low-Poly Modeling on the GPU</h1>
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">
+              <a href="https://seonghunn.github.io/">Seonghun Oh</a><sup>1*</sup>,</span>
+            <span class="author-block">
+              <a href="https://rabbit-hu.github.io/">Xiaodi Yuan</a><sup>2*</sup>,</span>
+            <span class="author-block">
+              <a href="https://sarahweiii.github.io/">Xinyue Wei</a><sup>2*</sup>,</span>
+            <span class="author-block">
+              <a href="https://rshi.top/">Ruoxi Shi</a><sup>2</sup>,</span>
+            <span class="author-block">
+              <a href="https://www.fbxiang.com/">Fanbo Xiang</a><sup>3</sup>,</span>
+            <span class="author-block">
+              <a href="https://cseweb.ucsd.edu/~mil070/">Minghua Liu</a><sup>3</sup>,</span>
+            <span class="author-block">
+              <a href="https://cseweb.ucsd.edu/~haosu/">Hao Su</a><sup>2,3</sup></span>
+          </div>
+
+          <div class="is-size-5 publication-authors">
+            <span class="author-block"><sup>1</sup> Yonsei University,</span>
+            <span class="author-block"><sup>2</sup> University of California San Diego,</span>
+            <span class="author-block"><sup>3</sup> Hillbot Inc.</span>
+          </div>
+          <div class="is-size-6 publication-authors">
+            <span class="author-block"><sup>*</sup> Equal contribution</span>
+          </div>
+
+          <div class="column has-text-centered">
+            <div class="publication-links">
+              <!-- PDF Link. -->
+              <span class="link-block">
+                <a href="TBD"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="ai ai-arxiv"></i>
+                  </span>
+                  <span>TBD</span>
+                </a>
+              </span>
+              <!-- Code Link. -->
+              <span class="link-block">
+                <a href="https://github.com/SarahWeiii/pamo"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-github"></i>
+                  </span>
+                  <span>Code</span>
+                  </a>
+              </span>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="hero teaser">
+  <div class="container ">
+    <div class="hero-body">
+      <img src="static/images/teaser.png"
+                 class="teaser-image"
+                 alt="teaser image."/>
+
+      <h2>
+        We propose a GPU-based parallel mesh optimization that converts <b>arbitrary large-scale meshes into low-poly, intersection-free, manifold meshes with high quality.</b> <br>Our algorithm efficiently processes large-scale meshes, reducing 2M-face models to 2K-face in 2.29s and 7M-face models to 7K-face in 5.32s.
+      </h2>
+    </div>
+  </div>
+</section>
+
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <!-- Abstract. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified">
+          <p>
+            Reducing the triangle count in complex 3D models is a basic geometry preprocessing step in graphics pipelines such as efficient rendering and interactive editing. However, most existing mesh simplification methods exhibit a few issues. Firstly, they often lead to self-intersections during decimation, a major issue for applications such as 3D printing and soft-body simulation. Second, to perform simplification on a mesh in the wild, one would first need to perform re-meshing, which often suffers from surface shifts and losses of sharp features. Finally, existing re-meshing and simplification methods can take minutes when processing large-scale meshes, limiting their applications in practice. To address the challenges, we introduce a novel GPU-based mesh optimization approach containing three key components: (1) a parallel re-meshing algorithm to turn meshes in the wild into watertight, manifold, and intersection-free ones, and reduce the prevalence of poorly shaped triangles; (2) a robust parallel simplification algorithm with intersection-free guarantees; (3) an optimization-based safe projection algorithm to realign the simplified mesh with the input, eliminating the surface shift introduced by re-meshing and recovering the original sharp features. The algorithm demonstrates remarkable efficiency, simplifying a 2-million-face mesh to 20k triangles in 3 seconds on RTX4090. We evaluated the approach on the Thingi10K dataset and showcased its exceptional performance in geometry preservation and speed.
+          </p>
+        </div>
+      </div>
+    </div>
+    <!--/ Abstract. -->
+</section>
+
+<section class="section">
+  <div class="columns is-centered">
+    <div class="column is-four-fifths">
+      <h2 class="title is-3">Method</h2>
+
+      <div class="content has-text-justified">
+        <img src="static/images/pipeline.png"
+               class="pipeline-image"
+               alt="pipeline image."/>
+              </div>
+              <p><center class="caption-text"><i>Pipeline overview. Our method performs remeshing, mesh simplification, and safe projection sequentially.<br> All stages are parallelized on the GPU.</center></i></p>
+      <br>
+      <h3 class="title is-4">Parallel Remeshing</h3>
+      <div class="content has-text-justified">
+        <p>
+          Our first stage converts arbitrary inputs into watertight, manifold, and intersection-free meshes for downstream processing. 
+          We begin by computing a narrow-band unsigned distance field (UDF) around the input mesh using a voxel grid hierarchy. 
+          This step removes unnecessary voxel–triangle pairs and enables efficient GPU computation. 
+          <br><br>
+          <figure class="method-figure small">
+            <img src="static/images/udf-comp.png" alt="Narrow-band UDF on a voxel hierarchy.">
+            <figcaption class="method-caption">Efficient narrow-band UDF computation with a voxel
+              grid hierarchy.</figcaption>
+          </figure>
+          Next, an ε-band conversion safely transforms the UDF into an SDF for iso-surface extraction by defining 
+          <span style="white-space:nowrap;">SDF(x) = UDF(x) − ε</span>, where ε is the band width. 
+          We then extract the mesh from the SDF using a DualMC-based algorithm. 
+          In this step, self-intersections from quad division are avoided, and a smoothing function is applied to reduce numerical errors. 
+          <br>We also provide a standalone <a href="https://github.com/seonghunn/pdmc">CUDA implementation</a> for this stage. 
+          <figure class="method-figure">
+            <img src="static/images/dualmc_adv.png" alt="DualMC improvements">
+            <figcaption class="method-caption">Our method produces meshes with significantly fewer skinny
+              triangles compared to other iso-surface extraction algorithms.</figcaption>
+          </figure>
+        </p>
+        
+      </div>
+
+      <h3 class="title is-4">Parallel Mesh Simplification</h3>
+      <div class="content has-text-justified">
+        <p>
+          This stage reduces the number of triangles efficiently while preserving manifoldness and preventing self-intersections. 
+          We propose a parallel simplification method based on an iterative edge-collapse algorithm. 
+          The edge cost combines QEM with edge-length and skinny-triangle penalties, balancing output quality with the need to avoid poorly shaped elements. 
+          To parallelize the process, the mesh is divided into independent regions. 
+          In each iteration, all regions perform edge collapses simultaneously on the GPU, since a single collapse only affects its local region.
+        </p>
+        
+        <figure class="method-figure half">
+          <img src="static/images/local_area_flat.png" alt="Independent collapse regions">
+          <figcaption class="method-caption">The yellow and pink areas mark
+            two independent regions (R1 and R2) associated with E1 and E2,
+            respectively.</figcaption>
+        </figure>
+        
+        <p>
+          After each iteration, a parallel self-intersection detector checks for intersections. 
+          Any invalid collapses are reverted, ensuring that the mesh remains manifold and intersection-free throughout the process.
+        </p>
+      </div>
+
+      <h3 class="title is-4">Parallel Safe Projection</h3>
+      <div class="content has-text-justified">
+        <p>
+          In the final stage, we safely project the simplified mesh back toward the original input, strictly avoiding self-intersections while recovering sharp features and preserving mesh quality. 
+          We optimize an energy function that balances fidelity to the input surface (Chamfer/Hausdorff distance) with elastic and bending terms that preserve triangle quality and shape.
+          Inspired by IPC, we employ a barrier-based, collision-aware solver with continuous collision detection to guarantee intersection-free projection. 
+          This process restores sharp features, reduces surface error, and maintains high mesh quality. 
+        </p>
+        
+        <figure class="method-figure half">
+          <img src="static/images/sharp_feat.png" alt="Sharp feature restoration">
+          <figcaption class="method-caption">Sharp features are recovered through projection while avoiding intersections.</figcaption>
+        </figure>
+      </div>
+    </div>
+  </div>
+
+</section>
+<section class="section">
+  <div class="columns is-centered">
+    <div class="column is-four-fifths">
+      <h2 class="title is-3">Result</h2>
+
+      <div class="content has-text-justified">
+        <img src="static/images/crab_row.gif"
+               class="pipeline-image"
+               alt="pipeline image."/>
+        <img src="static/images/dragon_row.gif"
+               class="pipeline-image"
+               alt="pipeline image."/><br><br>
+        <img src="static/images/lod_new.png"
+               class="pipeline-image"
+               alt="pipeline image."/>
+               <p><center class="caption-text">Our method produces high-quality output meshes while achieving fast runtime, as illustrated in the teaser.</center></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+<section class="section">
+    <div class="columns is-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Comparison with Existing Works</h2>
+
+        <div class="content has-text-justified">
+          <img src="static/images/baseline_inter.png"
+                 class="pipeline-image"
+                 alt="pipeline image."/>
+                 <p><center class="caption-text">
+                  Our method guarantees intersection-free output meshes, whereas baseline models cannot avoid producing self-intersecting triangles (marked in red).
+                </center></p>
+                </p>
+        </div>
+        <div class="content has-text-justified">
+          <img src="static/images/rolopm.png"
+                 class="pipeline-image"
+                 alt="pipeline image."/>
+                 <p><center class="caption-text">The original shape is preserved better in our output mesh, with fewer spike
+                  artifacts.</center></p>
+        </div>
+      </div>
+    </div>
+</section>
+
+
+<section class="section" id="BibTeX">
+  <div class="container is-max-desktop content">
+    <h2 class="title">BibTeX</h2>
+    <pre><code> TBD</code></pre>
+  </div>
+</section>
+
+
+<footer class="footer">
+  <div class="container">
+    <div class="content has-text-centered">
+      <a class="icon-link"
+         href="Coming soon">
+        <i class="fas fa-file-pdf"></i>
+      </a>
+      <a class="icon-link" href="https://github.com/SarahWeiii/pamo" class="external-link" disabled>
+        <i class="fab fa-github"></i>
+      </a>
+    </div>
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content">
+          <p>
+            This website is borrowed from <a
+              href="https://github.com/nerfies/nerfies.github.io">nerfies</a>.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
