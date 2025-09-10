@@ -17,17 +17,17 @@
   <link rel="stylesheet" href="./static/css/bulma.min.css">
   <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
   <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
   <link rel="stylesheet"
         href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
   <link rel="stylesheet" href="./static/css/index.css">
-  <link rel="icon" href="static/images/icon.png">
+  <link rel="icon" href="./static/images/icon.png">
 
   <!-- Open Graph -->
   <meta property="og:type" content="website">
   <meta property="og:title" content="PaMO: Parallel Mesh Optimization for Intersection-Free Low-Poly Modeling on the GPU">
   <meta property="og:description" content="Parallel Mesh Optimization (PaMO) — GPU-based pipeline for low-poly, intersection-free, manifold meshes with high quality.">
-  <meta property="og:image" content="static/images/teaser.png">
+  <meta property="og:image" content="./static/images/teaser.png">
   <meta property="og:site_name" content="PaMO">
   <!-- Set your canonical URL below when deployed -->
   <!-- <link rel="canonical" href="https://YOUR_DOMAIN/PAGE_PATH"> -->
@@ -36,7 +36,7 @@
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="PaMO: Parallel Mesh Optimization for Intersection-Free Low-Poly Modeling on the GPU">
   <meta name="twitter:description" content="GPU-based parallel mesh optimization for intersection-free, manifold, low-poly meshes.">
-  <meta name="twitter:image" content="static/images/teaser.png">
+  <meta name="twitter:image" content="./static/images/teaser.png">
 
   <!-- JSON-LD Structured Data -->
   <script type="application/ld+json">
@@ -55,15 +55,17 @@
       {"@type": "Person", "name": "Minghua Liu"},
       {"@type": "Person", "name": "Hao Su"}
     ],
-    "image": "static/images/teaser.png",
+    "image": "./static/images/teaser.png",
     "inLanguage": "en",
     "keywords": ["PaMO", "Parallel Mesh Optimization", "GPU", "low-poly", "intersection-free", "manifold", "mesh simplification"]
   }
   </script>
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <!-- FontAwesome JavaScript removed - using CDN CSS version -->
-  <!-- JavaScript files removed - using CSS-only version -->
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
 </head>
 <body>
 
@@ -99,6 +101,10 @@
             <span class="author-block"><sup>2</sup> University of California San Diego,</span>
             <span class="author-block"><sup>3</sup> Hillbot Inc.</span>
           </div>
+
+          <div class="is-size-5 publication-authors">
+            <span class="author-block"><b>Computer Graphics Forum (Pacific Graphics) 2025</b></span>
+          </div>
           <div class="is-size-6 publication-authors">
             <span class="author-block"><sup>*</sup> Equal contribution</span>
           </div>
@@ -107,12 +113,12 @@
             <div class="publication-links">
               <!-- PDF Link. -->
               <span class="link-block">
-                <a href="TBD"
+                <a href="https://arxiv.org/abs/2509.05595"
                    class="external-link button is-normal is-rounded is-dark">
                   <span class="icon">
                       <i class="ai ai-arxiv"></i>
                   </span>
-                  <span>TBD</span>
+                  <span>arXiv</span>
                 </a>
               </span>
               <!-- Code Link. -->
@@ -137,7 +143,7 @@
 <section class="hero teaser">
   <div class="container ">
     <div class="hero-body">
-      <img src="static/images/teaser.png"
+      <img src="./static/images/teaser.png"
                  class="teaser-image"
                  alt="teaser image."/>
 
@@ -172,7 +178,7 @@
       <h2 class="title is-3">Method</h2>
 
       <div class="content has-text-justified">
-        <img src="static/images/pipeline.png"
+        <img src="./static/images/pipeline.png"
                class="pipeline-image"
                alt="pipeline image."/>
               </div>
@@ -186,7 +192,7 @@
           This step removes unnecessary voxel–triangle pairs and enables efficient GPU computation. 
           <br><br>
           <figure class="method-figure small">
-            <img src="static/images/udf-comp.png" alt="Narrow-band UDF on a voxel hierarchy.">
+            <img src="./static/images/udf-comp.png" alt="Narrow-band UDF on a voxel hierarchy.">
             <figcaption class="method-caption">Efficient narrow-band UDF computation with a voxel
               grid hierarchy.</figcaption>
           </figure>
@@ -196,7 +202,7 @@
           In this step, self-intersections from quad division are avoided, and a smoothing function is applied to reduce numerical errors. 
           <br>We also provide a standalone <a href="https://github.com/seonghunn/pdmc">CUDA implementation</a> for this stage. 
           <figure class="method-figure">
-            <img src="static/images/dualmc_adv.webp" alt="DualMC improvements">
+            <img src="./static/images/dualmc_adv.png" alt="DualMC improvements">
             <figcaption class="method-caption">Our method produces meshes with significantly fewer skinny
               triangles compared to other iso-surface extraction algorithms.</figcaption>
           </figure>
@@ -215,7 +221,7 @@
         </p>
         
         <figure class="method-figure half">
-          <img src="static/images/local_area_flat.png" alt="Independent collapse regions">
+          <img src="./static/images/local_area_flat.png" alt="Independent collapse regions">
           <figcaption class="method-caption">The yellow and pink areas mark
             two independent regions (R1 and R2) associated with E1 and E2,
             respectively.</figcaption>
@@ -237,7 +243,7 @@
         </p>
         
         <figure class="method-figure half">
-          <img src="static/images/sharp_feat.png" alt="Sharp feature restoration">
+          <img src="./static/images/sharp_feat.png" alt="Sharp feature restoration">
           <figcaption class="method-caption">Sharp features are recovered through projection while avoiding intersections.</figcaption>
         </figure>
       </div>
@@ -251,13 +257,15 @@
       <h2 class="title is-3">Result</h2>
 
       <div class="content has-text-justified">
-        <img src="static/images/crab_row.gif"
+        <img src="./static/images/crab_row.gif"
                class="pipeline-image"
                alt="pipeline image."/>
-        <img src="static/images/dragon_row.gif"
+        <img src="./static/images/dragon_row.gif"
+               class="pipeline-image"
+               alt="pipeline image."/><br><br>
+        <img src="./static/images/lod_new.png"
                class="pipeline-image"
                alt="pipeline image."/>
-               <br><br>
                <p><center class="caption-text">Our method produces high-quality output meshes while achieving fast runtime, as illustrated in the teaser.</center></p>
       </div>
     </div>
@@ -269,10 +277,10 @@
 <section class="section">
     <div class="columns is-centered">
       <div class="column is-four-fifths">
-        <h2 class="title is-3">Comparison with Baselines</h2>
+        <h2 class="title is-3">Comparison with Existing Works</h2>
 
         <div class="content has-text-justified">
-          <img src="static/images/baseline_inter.webp"
+          <img src="./static/images/baseline_inter.png"
                  class="pipeline-image"
                  alt="pipeline image."/>
                  <p><center class="caption-text">
@@ -281,7 +289,7 @@
                 </p>
         </div>
         <div class="content has-text-justified">
-          <img src="static/images/rolopm.webp"
+          <img src="./static/images/rolopm.png"
                  class="pipeline-image"
                  alt="pipeline image."/>
                  <p><center class="caption-text">The original shape is preserved better in our output mesh, with fewer spike
@@ -295,7 +303,15 @@
 <section class="section" id="BibTeX">
   <div class="container is-max-desktop content">
     <h2 class="title">BibTeX</h2>
-    <pre><code> TBD</code></pre>
+    <pre><code> @misc{oh2025pamo,
+      title={PaMO: Parallel Mesh Optimization for Intersection-Free Low-Poly Modeling on the GPU}, 
+      author={Seonghun Oh and Xiaodi Yuan and Xinyue Wei and Ruoxi Shi and Fanbo Xiang and Minghua Liu and Hao Su},
+      year={2025},
+      eprint={2509.05595},
+      archivePrefix={arXiv},
+      primaryClass={cs.GR},
+      url={https://arxiv.org/abs/2509.05595}, 
+}</code></pre>
   </div>
 </section>
 
@@ -304,7 +320,7 @@
   <div class="container">
     <div class="content has-text-centered">
       <a class="icon-link"
-         href="Coming soon">
+         href="https://arxiv.org/abs/2509.05595">
         <i class="fas fa-file-pdf"></i>
       </a>
       <a class="icon-link" href="https://github.com/SarahWeiii/pamo" class="external-link" disabled>
